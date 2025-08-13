@@ -6,7 +6,7 @@ pat 'S' = lines "#### \n#    \n#    \n ### \n    #\n    #\n#### "
 pat 'H' = lines "#   #\n#   #\n#   #\n#####\n#   #\n#   #\n#   #"
 pat 'O' = lines " ### \n#   #\n#   #\n#   #\n#   #\n#   #\n ### "
 pat 'E' = lines "#####\n#    \n#    \n#### \n#    \n#    \n#####"
-pat 'I' = lines "#####\n  #  \n  #  \n  #  \n  #  \n  #  \n#####"
+pat 'I' = lines " ### \n  #  \n  #  \n  #  \n  #  \n  #  \n ### "
 pat 'A' = lines " ### \n#   #\n#   #\n#####\n#   #\n#   #\n#   #"
 pat  _  = replicate 7 "     "
 
@@ -15,6 +15,7 @@ render s = unlines [intercalate "   " [g!!i | g <- map pat s] | i <- [0..6]]
 center w s = let l = sum [if c <= '\x7f' then 1 else 2 | c <- s]
             in replicate ((w - l) `div` 2) ' ' ++ s
 
+main :: IO ()
 main = do
   putStrLn (render "SHOEISHA")
   t <- utctDay <$> getCurrentTime
